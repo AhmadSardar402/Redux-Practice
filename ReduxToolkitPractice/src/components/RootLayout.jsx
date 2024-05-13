@@ -5,12 +5,14 @@ import { Provider } from 'react-redux'
 import store from './store/store'
 const RootLayout = () => {
   return (
-    <Provider store={store}>
-        <Navigationbar/>
-        <main>
-            <Outlet/>
-        </main>
-    </Provider>
+    <>
+        <Provider store={store}>      
+            <Navigationbar/>
+            <main>
+                <Outlet/>
+            </main>
+        </Provider>
+    </>
   )
 }
 

@@ -1,18 +1,27 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Card, Button } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {add} from './store/cartSlice'
+import { getProducts } from './store/productSlice'
+
+
 const Products = () => {
 
     const dispath = useDispatch();
-    const [products,setProducts] = useState([])
+    const {data: products} = useSelector(state => state.products)
 
     useEffect(()=>{
         //api
-        fetch('https://fakestoreapi.com/products')
-        .then(data => data.json())
-        .then(result => setProducts(result))
+        // fetch('https://fakestoreapi.com/products')
+        // .then(data => data.json())
+        // .then(result => setProducts(result))
+
+        
+        // Dispatch an action to fetch products
+        dispath(getProducts());
+
+
     },[]);
 
     const addToCart = (product) => {
@@ -21,7 +30,7 @@ const Products = () => {
     }
 
     const cards = products.map(product => (
-        <div className='col-md-3' style = {{marginBottom: '5px'}}>
+        <div className='col' style = {{marginBottom: '5px'}}>
             <Card key={product.id} style={{ width: '18rem'}} className='h-100'>
                 <div className="text-center">
                     <Card.Img variant="top" src={product.image} style = {{width: '100px', height: '130px' }}/>
@@ -41,10 +50,9 @@ const Products = () => {
     ))
   return (
     <>
-      <h1>Product Dashboard</h1>
-      <div className="row">
-        {cards}
-      </div>
+        <div className="row">
+            {cards}
+        </div>
     </>
   )
 }

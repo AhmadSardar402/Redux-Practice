@@ -1,14 +1,17 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container';
+import {Container, Row, Col} from 'react-bootstrap'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navigationbar = () => {
-  return (
+
+    const cartProducts = useSelector(state => state.cart)
+    return (
     <>
-        <Navbar expand="lg" className="bg-body-tertiary">
-            <Container>
+        <div className="row" style={{marginBottom: '20px'}}>
+            <Navbar expand="lg" className="bg-body-tertiary">
                 <Navbar.Brand to='/' as={Link}>Redux Toolkit Practice</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -16,11 +19,11 @@ const Navigationbar = () => {
                         <Nav.Link to='/' as = {Link}>Product</Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link to='/cart' as = {Link}>My Bag 0</Nav.Link>
+                        <Nav.Link to='/cart' as = {Link}>My Bag {cartProducts.length}</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
-            </Container>
-        </Navbar>
+            </Navbar>
+        </div>
     </>
   )
 }
