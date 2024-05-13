@@ -9,11 +9,14 @@ const Navigationbar = () => {
     <>
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href="#home">Redux Toolkit Practice</Navbar.Brand>
+                <Navbar.Brand to='/' as={Link}>Redux Toolkit Practice</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link to='/' as = {Link}>Product</Nav.Link>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link to='/cart' as = {Link}>My Bag 0</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
